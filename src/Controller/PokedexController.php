@@ -12,10 +12,10 @@ class PokedexController extends AbstractController
     public function index(): JsonResponse
     {
 
-        $pokedex = require "dataJSON/pokedex.json";
+        $pokedex = json_decode(file_get_contents("dataJSON/pokedex.json", true));
 
-        return $this->json([
-            'pokedex' => $pokedex,
-        ]);
+        return $this->json(
+            $pokedex,
+        );
     }
 }

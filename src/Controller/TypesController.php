@@ -11,10 +11,10 @@ class TypesController extends AbstractController
     #[Route('/types', name: 'app_types')]
     public function index(): JsonResponse
     {
-        $types = require "dataJSON/types.json";
+        $types = json_decode(file_get_contents("dataJSON/types.json", true));
 
-        return $this->json([
-            'types' => $types,
-        ]);
+        return $this->json(
+            $types,
+        );
     }
 }

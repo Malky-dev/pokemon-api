@@ -12,10 +12,10 @@ class ItemsController extends AbstractController
     public function index(): JsonResponse
     {
 
-        $items = require "dataJSON/items.json";
+        $items = json_decode(file_get_contents("dataJSON/items.json", true));
 
-        return $this->json([
-            'items' => $items,
-        ]);
+        return $this->json(
+            $items,
+        );
     }
 }
